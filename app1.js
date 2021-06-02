@@ -1,8 +1,9 @@
 const game = () => {
     let pScore = 0;
     let cScore = 0;
+   
   
-    //Start the Game
+      //Start the Game
     const startGame = () => {
       const playBtn = document.querySelector(".intro button");
       const introScreen = document.querySelector(".intro");
@@ -60,23 +61,35 @@ const game = () => {
       const computerScore = document.querySelector(".computer-score p");
       playerScore.textContent = pScore;
       computerScore.textContent = cScore;
+      //restart the game ones you get the winner 
       setTimeout(()=>{
         if(pScore ==2)
-      {
-        game(); neww.textContent="player wins the match"; window.alert("HARD LUCK!! PLAYER WON LET'S START NEW MATCH"); 
+      {  
+         
         setTimeout(()=>{
+          swal({
+            title: "Congrats!",
+            text: "You won the match",
+            button: "Start again",
+          });
           pScore=0;cScore=0; 
           playerHand.src = `./assets/rock.png`;
           computerHand.src = `./assets/rock.png`;
           winner.textContent="Let's Start";
           updateScore();return;
-        },1000);
+        },900);
        
       }
       else if(cScore ==2)
-      {
-        game(); neww.textContent="computer wins the match"; window.alert("HARD LUCK!! COMPUTER WON LET'S START NEW MATCH"); 
+      { 
+
+         
         setTimeout(()=>{
+          swal({
+            title: "Hard luck!",
+            text: "You lost the match",
+            button: "Start again",
+          });
           pScore=0;cScore=0; 
           playerHand.src = `./assets/rock.png`;
           computerHand.src = `./assets/rock.png`;
@@ -144,6 +157,7 @@ const game = () => {
     };
   
     //Is call all the inner function
+    
     startGame();
     playMatch();
   };
